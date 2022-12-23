@@ -1,0 +1,36 @@
+@use "./colors/colors" as *;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #ececec;
+    position: relative;
+    background-image: url("./assets/skills.svg");
+    min-height: 100vh;
+    &::after {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        background-color: #ececec;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.8;
+    }
+}
+
+.app {
+    background: $gradient-cloudy;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

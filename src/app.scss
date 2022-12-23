@@ -1,0 +1,312 @@
+@use "./global-rules";
+@use "./colors/colors" as *;
+@use "./framework/framework";
+.app {
+    width: 50%;
+    @media (max-width: 991px) {
+        width: 75%;
+    }
+    @media (max-width: 767px) {
+        width: 90%;
+    }
+    .main-title {
+        border-bottom: 10px solid;
+        @media (max-width: 767px) {
+            .content {
+                font-size: 35px;
+            }
+            .icon {
+                font-size: 40px;
+            }
+        }
+        @media (max-width: 500px) {
+            .content {
+                font-size: 28px;
+            }
+        }
+    }
+    .word-cat {
+        border-bottom: 10px solid $sky;
+    }
+    .game-body {
+        min-height: 375px;
+        @media (max-width: 767px) {
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            .hangman {
+                order: 1 !important;
+            }
+            .letters {
+                order: 2;
+                max-height: 100px;
+            }
+        }
+        .letter {
+            width: 45px;
+            height: 45px;
+            @media (max-width: 767px) {
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+            }
+            @media (max-width: 500px) {
+                font-size: 14px;
+                width: 25px;
+                height: 25px;
+            }
+            &.false {
+                background-color: #f00 !important;
+                pointer-events: none;
+            }
+            &.true {
+                background-color: rgb(20, 156, 45) !important;
+                pointer-events: none;
+            }
+            &.off {
+                pointer-events: none;
+                opacity: 0.4;
+            }
+        }
+        .image {
+            img {
+                max-height: 300px;
+                @media (max-width: 500px) {
+                    max-height: 250px;
+                }
+            }
+        }
+    }
+    @media (max-width: 767px) {
+        .lose,
+        .win {
+            order: 2 !important;
+        }
+    }
+    .hangman {
+        border-bottom: 4px solid $sky;
+        position: relative;
+        @media (max-width: 767px) {
+            transform: rotate(360deg);
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            height: 100%;
+            left: calc(50% + 100px);
+            width: 4px;
+            background-color: $sky;
+            display: none;
+            @media (max-width: 767px) {
+                left: calc(50% + 98px);
+            }
+        }
+        .set {
+            width: 4px;
+            height: 100%;
+            background-color: $sky;
+            display: none;
+            &::after,
+            &::before {
+                content: "";
+                position: absolute;
+                top: 15px;
+                left: 50%;
+                background-color: $sky;
+            }
+            &::before {
+                left: calc(50% + 50px);
+                height: 30px;
+                width: 4px;
+                @media (max-width: 767px) {
+                    left: 50%;
+                    transform: translateX(-50%);
+                    top: 0;
+                }
+            }
+            &::after {
+                width: 100px;
+                height: 4px;
+                @media (max-width: 767px) {
+                    left: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    top: 0;
+                }
+            }
+        }
+        .hang {
+            width: 50px;
+            display: none;
+            height: 50px;
+            top: 44px;
+            border: 4px dotted $sky;
+            left: calc(50% + 52.5px);
+            transform: translateX(-50%);
+            @media (max-width: 767px) {
+                left: 50%;
+                transform: translateX(-50%);
+                top: 29px;
+            }
+        }
+        .head {
+            width: 30px;
+            display: none;
+            height: 30px;
+            top: 53px;
+            left: calc(50% + 52.5px);
+            transform: translateX(-50%);
+            background-color: $main;
+            @media (max-width: 767px) {
+                left: 50%;
+                transform: translateX(-50%);
+                top: 38px;
+            }
+        }
+        .body {
+            width: 4px;
+            display: none;
+            height: 80px;
+            background-color: $main;
+            left: calc(50% + 51.5px);
+            top: 83px;
+            @media (max-width: 767px) {
+                left: 50%;
+                transform: translateX(-50%);
+                top: 68px;
+            }
+        }
+        .hands {
+            left: calc(50% + 40.5px);
+            display: none;
+            top: 90px;
+            @media (max-width: 767px) {
+                left: 50%;
+                transform: translateX(-50%);
+                top: 70px;
+            }
+            &::after,
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                width: 4px;
+                height: 40px;
+                background-color: $main;
+            }
+            &::before {
+                left: 27px;
+                transform: rotate(50deg);
+                @media (max-width: 767px) {
+                    left: 14px;
+                }
+            }
+            &::after {
+                left: -5px;
+                transform: rotate(-50deg);
+                @media (max-width: 767px) {
+                    left: -18px;
+                }
+            }
+        }
+        .legs {
+            left: calc(50% + 40.5px);
+            display: none;
+            top: 155px;
+            @media (max-width: 767px) {
+                left: 50%;
+                transform: translateX(-50%);
+                top: 141px;
+            }
+            &::after,
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                width: 4px;
+                height: 40px;
+                background-color: $main;
+            }
+            &::before {
+                left: 27px;
+                transform: rotate(-230deg);
+                @media (max-width: 767px) {
+                    left: 14px;
+                }
+            }
+            &::after {
+                left: -5px;
+                transform: rotate(230deg);
+                @media (max-width: 767px) {
+                    left: -18px;
+                }
+            }
+        }
+        &.fail-0 {
+            .set,
+            &::before {
+                display: block;
+            }
+        }
+        &.fail-1 {
+            .hang {
+                display: block;
+            }
+        }
+        &.fail-2 {
+            .head {
+                display: block;
+            }
+        }
+        &.fail-3 {
+            .body {
+                display: block;
+            }
+        }
+        &.fail-4 {
+            .hands {
+                display: block;
+            }
+        }
+        &.fail-5 {
+            .legs {
+                display: block;
+            }
+        }
+    }
+    & .word-guess {
+        background-color: $sky;
+        @media (max-width: 767px) {
+            gap: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 20px;
+        }
+        .letter-container {
+            width: 20px;
+            @media (max-width: 500px) {
+                font-size: 18px;
+                width: 8px;
+            }
+            &::after {
+                content: "";
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                height: 4px;
+                width: 100%;
+                background-color: #fff;
+            }
+            &.space::after {
+                top: -10px;
+                background-color: $main;
+            }
+            &.hide {
+                span {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+}
